@@ -7,7 +7,7 @@ from pytools import P
 
 TILW:int = 30
 TILH:int = 20
-MAPW,MAPH = (20,25)
+MAPW,MAPH = (26,25)
 SC_SIZE = SW,SH = ((MAPW+2)*TILW*1.5,(MAPH+2)*TILH*1.3)
 Z_TO_Y = 200
 WATER_LEVEL = 0.6
@@ -117,11 +117,15 @@ class MapManager:
         #pg.draw.line(self.surface,color,upleft,downleft,1) #line to the down
         #pg.draw.line(self.surface,color,upleft,downright,3) #line to the down-right
 
-        #pg.draw.circle(self.surface,color,upleft,1) # point
+        color = "black"
+        pg.draw.polygon(self.surface,color,[upleft,upright,downleft],1)
+        pg.draw.circle(self.surface,color,upleft,3) # point
         #pg.draw.circle(self.surface,color,upleft,2) # point
         #pg.draw.line(self.surface,"black",upleft,upright,1) #line to the right
         #pg.draw.line(self.surface,"black",upleft,downleft,1) #line to the down
-        #pg.draw.line(self.surface,color,upleft,downright,3) #line to the down-right
+        #pg.draw.line(self.surface,color,upleft,upright,1) #line to the right
+        #pg.draw.line(self.surface,color,upleft,downleft,1) #line to the down
+        #pg.draw.line(self.surface,color,upleft,downright,1) #line to the down-right
 
 class App:
     def __init__(self) -> None:
