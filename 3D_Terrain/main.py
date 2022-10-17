@@ -79,10 +79,15 @@ class MapManager:
     
     def display_map(self):
         w = (MAPW*TILW) - TILW
-        h =  (MAPH*TILH) - TILH
-        rect = (TILW,   TILH, w,h )
+        h =  ((MAPH+10)*TILH) - TILH 
+        rect = (TILW,
+         TILH,
+         clamp(w/self.app.zoomlevel,1,self.surface.get_width()-TILW),
+         clamp(h/self.app.zoomlevel,1,self.surface.get_height()-TILH) )
         surf = self.surface.subsurface(rect)
-        self.app.screen.blit(pg.transform.scale(surf,(surf.get_width()*self.app.zoomlevel,surf.get_height()*self.app.zoomlevel)),(self.app.xoffset,self.app.yoffset))
+        scaled_surf = pg.transform.scale(surf,(surf.get_width()*self.app.zoomlevel,surf.get_height()*self.app.zoomlevel))
+        self.app.screen.blit(
+            scaled_surf,(SW//2-(scaled_surf.get_width()//2),SH//2-(scaled_surf.get_height()//2) ) )
     
     def Draw_Tile(self,x,y,fog):
         multiplier = 2.2
