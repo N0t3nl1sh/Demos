@@ -1,0 +1,2 @@
+If you play around with the render_tiles function, change which lines are commented 
+and the colors, you can get some pretty amazing results.
